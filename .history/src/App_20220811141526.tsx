@@ -17,9 +17,9 @@ function App() {
   const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(null);
   const [user, setUser] = useState<userInterface>({
-    chain: "",
-    account: "",
-    balance: "0"
+    chain: "chain",
+    account: "account",
+    balance: "balance"
   })
 
   useEffect(() => {
@@ -30,8 +30,8 @@ function App() {
         clientId,
         chainConfig: {
           chainNamespace: CHAIN_NAMESPACES.EIP155,
-          chainId: "0x504",
-          rpcTarget: "https://rpc.ankr.com/moonbeam", // This is the public RPC we have added, please pass on your own endpoint while creating an app
+          chainId: "0x505",
+          rpcTarget: "https://moonriver.public.blastapi.io", // This is the public RPC we have added, please pass on your own endpoint while creating an app
         },
       });
 
