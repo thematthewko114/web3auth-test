@@ -47,6 +47,7 @@ function App() {
     };
 
     init();
+    getUserInfo()
   }, []);
 
   const login = async () => {

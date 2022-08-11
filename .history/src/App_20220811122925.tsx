@@ -6,7 +6,6 @@ import "./App.css";
 
 const clientId = "BE-ZOyYe33e6M8fRpuZZPxIT7B33LFBfqU5jFsmxGr3CuEX6R7_Ue88FMivlK7_n35P2EeXZPMzcRVyUgVBhyoA"; // get from https://dashboard.web3auth.io
 
-
 interface userInterface {
   chain: string,
   account: string,
@@ -47,6 +46,7 @@ function App() {
     };
 
     init();
+    getUserInfo()
   }, []);
 
   const login = async () => {

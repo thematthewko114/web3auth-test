@@ -6,7 +6,6 @@ import "./App.css";
 
 const clientId = "BE-ZOyYe33e6M8fRpuZZPxIT7B33LFBfqU5jFsmxGr3CuEX6R7_Ue88FMivlK7_n35P2EeXZPMzcRVyUgVBhyoA"; // get from https://dashboard.web3auth.io
 
-
 interface userInterface {
   chain: string,
   account: string,
@@ -161,7 +160,7 @@ function App() {
       <div style={{width: "100%"}}>User info: </div>
       <div style={{width: "100%"}}>Chain ID: {user.chain}</div>
       <div style={{width: "100%"}}>Account: {user.account} </div>
-      <div style={{width: "100%"}}>Balance: {user.balance} ETH </div>
+      <div style={{width: "100%"}}>Balance: {user.balance} </div>
     </footer>
     </>
   );

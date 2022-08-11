@@ -49,6 +49,8 @@ function App() {
     init();
   }, []);
 
+  
+
   const login = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
@@ -79,7 +81,9 @@ function App() {
       balance: balance
     })
   };
-
+if(web3auth && provider){
+      getUserInfo()
+    }
   const logout = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");

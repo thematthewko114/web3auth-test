@@ -6,8 +6,8 @@ import "./App.css";
 
 const clientId = "BE-ZOyYe33e6M8fRpuZZPxIT7B33LFBfqU5jFsmxGr3CuEX6R7_Ue88FMivlK7_n35P2EeXZPMzcRVyUgVBhyoA"; // get from https://dashboard.web3auth.io
 
-
 interface userInterface {
+  userInfo: any,
   chain: string,
   account: string,
   balance: string
@@ -17,6 +17,9 @@ function App() {
   const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(null);
   const [user, setUser] = useState<userInterface>({
+    userInfo: {
+      
+    },
     chain: "chain",
     account: "account",
     balance: "balance"
@@ -47,6 +50,10 @@ function App() {
     };
 
     init();
+    getUserInfo()
+    getChainId()
+    getAccounts()
+    getBalance()
   }, []);
 
   const login = async () => {
@@ -63,21 +70,8 @@ function App() {
       console.log("web3auth not initialized yet");
       return;
     }
-    if (!provider) {
-      console.log("provider not initialized yet");
-      return;
-    }
     const user = await web3auth.getUserInfo();
-    const rpc = new RPC(provider);
-    const chainId = await rpc.getChainId();
-    const address = await rpc.getAccounts();
-    const balance = await rpc.getBalance();
-    setUser({
-      ...user,
-      chain: chainId,
-      account: address[0],
-      balance: balance
-    })
+    console.log(user)
   };
 
   const logout = async () => {
@@ -87,6 +81,45 @@ function App() {
     }
     await web3auth.logout();
     setProvider(null);
+  };
+
+  const getChainId = async () => {
+    if (!provider) {
+      console.log("provider not initialized yet");
+      return;
+    }
+    const rpc = new RPC(provider);
+    const chainId = await rpc.getChainId();
+    console.log(chainId, typeof(chainId))
+    setUser({
+      ...user,
+      chain: chainId
+    });
+  };
+  const getAccounts = async () => {
+    if (!provider) {
+      console.log("provider not initialized yet");
+      return;
+    }
+    const rpc = new RPC(provider);
+    const address = await rpc.getAccounts();
+    setUser({
+      ...user,
+      account: address[0]
+    });
+  };
+
+  const getBalance = async () => {
+    if (!provider) {
+      console.log("provider not initialized yet");
+      return;
+    }
+    const rpc = new RPC(provider);
+    const balance = await rpc.getBalance();
+    setUser({
+      ...user,
+      balance: balance
+    });
   };
 
   const sendTransaction = async () => {
@@ -122,6 +155,15 @@ function App() {
     <>
       <button onClick={getUserInfo} className="card">
         Get User Info
+      </button>
+      <button onClick={getChainId} className="card">
+        Get Chain ID
+      </button>
+      <button onClick={getAccounts} className="card">
+        Get Accounts
+      </button>
+      <button onClick={getBalance} className="card">
+        Get Balance
       </button>
       <button onClick={sendTransaction} className="card">
         Send Transaction
@@ -160,8 +202,8 @@ function App() {
     <footer className="footer">
       <div style={{width: "100%"}}>User info: </div>
       <div style={{width: "100%"}}>Chain ID: {user.chain}</div>
-      <div style={{width: "100%"}}>Account: {user.account} </div>
-      <div style={{width: "100%"}}>Balance: {user.balance} ETH </div>
+      <div style={{width: "100%"}}>Account: </div>
+      <div style={{width: "100%"}}>Balance: </div>
     </footer>
     </>
   );

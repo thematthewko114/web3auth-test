@@ -49,6 +49,10 @@ function App() {
     init();
   }, []);
 
+  useEffect(() => {
+    getUserInfo()
+  }, [web3auth])
+
   const login = async () => {
     if (!web3auth) {
       console.log("web3auth not initialized yet");
