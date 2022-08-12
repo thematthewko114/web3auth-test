@@ -17,7 +17,9 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/login/moonbeam" element={<MoonbeamLogin />} />
+      <Route path="/login/ethereum" element={<ETHLogin />} />
+      <Route path="/login/moonbeam" element={<MoonbeamLogin/>} />
+      <Route path="/login/moonriver" element={<MoonriverLogin />} />
       <Route path="/user" element={<UserPage />} />
     </Routes>
   </BrowserRouter>

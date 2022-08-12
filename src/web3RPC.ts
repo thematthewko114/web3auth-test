@@ -85,7 +85,7 @@ export default class EthereumRpc {
       // Get user's Ethereum public address
       const fromAddress = (await web3.eth.getAccounts())[0];
 
-      const originalMessage = "YOUR_MESSAGE";
+      const originalMessage = "Customized sugned messsage";
 
       // Sign the message
       const signedMessage = await web3.eth.personal.sign(

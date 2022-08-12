@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import ETHLogin from './ethLogin';
 import MoonbeamLogin from './moonbeamLogin';
 import MoonriverLogin from './moonriverLogin';
-import UserPage from './user';
 
 
 const root = ReactDOM.createRoot(
@@ -17,8 +16,9 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/login/moonbeam" element={<MoonbeamLogin />} />
-      <Route path="/user" element={<UserPage />} />
+      <Route path="/login/ethereum" element={<ETHLogin />} />
+      <Route path="/login/moonbeam" element={<MoonbeamLogin/>} />
+      <Route path="/login/moonriver" element={<MoonriverLogin />} />
     </Routes>
   </BrowserRouter>
 );
